@@ -1,0 +1,67 @@
+@layout('layouts.app')
+ 
+@section('content')
+    <!-- Page Header -->
+    <header class="masthead">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+                @each(result in dataOne)
+              <h1>{{ result.title }}</h1>
+            <p>{{ result.description }}</p>
+           <p> {{ result.content }}</p>
+              <span class="meta">Posted by
+                  <a href="">{{ result.username }}</a>
+                  <p>on {{ result.date }} </p>
+                </span>
+             @endeach
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </header>
+ 
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            
+          <p>  </p>
+              
+          </div>
+        </div>
+      </div>
+      <div class="comment">
+          @each(res in dataTwo)
+      <p>{{ res.body}}</p>
+      <p>{{res.userName}}</p>
+      <p>{{res.date}}</p>
+      <p>{{res.userEmail}}</p>
+      @endeach
+      </div>
+    </article>
+    <form action="/addComment" method="POST">
+      <div class="form-group">
+        <input type="text" class="form-control" id="commnetPersonName" name="commnetPersonName" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" id="commnetPersonEmail" name="commnetPersonEmail" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlTextarea">Add Comment</label>
+          <textarea class="form-control" name="exampleFormControlTextarea"  id="exampleFormControlTextarea" rows="3"></textarea>
+        </div>
+        <div>
+        <input type="hidden" value=" {{ids}}"  name="post_id" />
+        </div>
+        <div class="form-group my-4 text-center">
+            <button class="btn btn-primary">Create Post</button>
+          </div>
+      </form>
+    <hr>
+   
+@endsection
